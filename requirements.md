@@ -43,6 +43,14 @@ you must include user identifying information in the scoring output summary.
 * Provide instructions for how to run your application. Preferably in a README.md
 at the root of your project.
 
+
+## Additional Derived requirements
+* Store code in Github
+* Timebox to a few hours
+* Score a hypothetical bowling game using [the "traditional scoring rules" described here](https://www.thoughtco.com/bowling-scoring-420895)
+* Input: Accept user input representing frames via CLI. Input format is comma separated values [0-9,X,/]
+* Output: Print the recently completed frame number and current and/or final score to CLI
+
 ## Additional Notes
 * You can use whatever language you prefer.
 

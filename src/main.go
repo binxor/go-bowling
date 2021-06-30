@@ -1,4 +1,4 @@
-package main
+package gobowling
 
 import (
 	"fmt"
@@ -6,16 +6,21 @@ import (
 )
 
 func getFrameScore(frameNo int) int {
-	// TODO - validate frameVal
+	// TODO - validate frameVal, repeat user query if bad
 	var frameVal string
 	fmt.Print("Enter Your Frame [" + strconv.Itoa(frameNo) + "]: ")
 	fmt.Scanln(&frameVal)
-	frameScore := score(frameVal)
+	frameScore := Score(frameVal)
 	return frameScore
 }
 
-func score(input ...string) int {
+func Score(input ...string) int {
 	// TODO - scoring logic
+	fmt.Print(input, " ")
+	for _, frame := range input {
+		// TODO - parse frame input and score
+		fmt.Println(frame)
+	}
 	result := 5
 	return result
 }
@@ -31,11 +36,11 @@ func printWelcome() {
 }
 
 func main() {
-	score := 0
+	currentScore := 0
 	printWelcome()
 	for f := 1; f <= 10; f++ {
 		currentFrameScore := getFrameScore(f)
-		score += currentFrameScore
-		fmt.Println("Frame " + strconv.Itoa(f) + ": " + strconv.Itoa(score))
+		currentScore += currentFrameScore
+		fmt.Println("Frame " + strconv.Itoa(f) + ": " + strconv.Itoa(currentScore))
 	}
 }
