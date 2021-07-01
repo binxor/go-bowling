@@ -19,7 +19,7 @@ func TestCalculateFrameScore(t *testing.T) {
 		{"", 0},         // Test: Empty frame
 	}
 	for _, c := range cases {
-		fmt.Print(" * Testing GetFrameScore(" + c.in + ") == " + strconv.Itoa(c.want))
+		fmt.Print("    *Testing GetFrameScore(" + c.in + ") == " + strconv.Itoa(c.want))
 		got := CalculateFrameScore(c.in)
 		if got != c.want {
 			fmt.Println(" FAIL")
@@ -28,6 +28,12 @@ func TestCalculateFrameScore(t *testing.T) {
 			fmt.Println(" PASS")
 		}
 	}
+}
+
+func TestGetUserInput(t *testing.T) {
+	// TODO - learn how to test STDIN
+	fmt.Println("    *TODO - learn how to test STDIN")
+	t.Skip("Skipping Test")
 }
 
 func TestSumRolls(t *testing.T) {
@@ -43,7 +49,7 @@ func TestSumRolls(t *testing.T) {
 		{"", 0},         // Test: Empty frame
 	}
 	for _, c := range cases {
-		fmt.Print(" * Testing SumRolls(" + c.in + ") == " + strconv.Itoa(c.want))
+		fmt.Print("    *Testing SumRolls(" + c.in + ") == " + strconv.Itoa(c.want))
 		got := SumRolls(c.in)
 		if got != c.want {
 			fmt.Println(" FAIL")

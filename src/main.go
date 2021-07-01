@@ -43,7 +43,7 @@ func SumRolls(input string) int {
 	return result
 }
 
-func printFinalScore(val int) {
+func PrintFinalScore(val int) {
 	fmt.Println("")
 	fmt.Println("----------------------")
 	fmt.Println("[ Final Score ]: [ " + strconv.Itoa(val) + " ]")
@@ -67,14 +67,23 @@ func printWelcome() {
 }
 
 func main() {
+	// Initialize score
 	currentScore := 0
+
+	// Say hello
 	printWelcome()
+
+	// Loop over 10 Frames of STDIN
 	for f := 1; f <= 10; f++ {
 		input := GetUserInput(f)
 		currentFrameScore := CalculateFrameScore(input)
 		currentScore += currentFrameScore
 		fmt.Println("           [" + strconv.Itoa(f) + "] Total Score: " + strconv.Itoa(currentScore))
 	}
-	printFinalScore(currentScore)
+
+	// Print Final Score
+	PrintFinalScore(currentScore)
+
+	// Say goodbye
 	printGoodbye()
 }
