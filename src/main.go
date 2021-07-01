@@ -5,12 +5,16 @@ import (
 	"strconv"
 )
 
-func getFrameScore(frameNo int) int {
+func CalculateFrameScore(frameVal string) int {
+	frameScore := SumRolls(frameVal)
+	return frameScore
+}
+
+func GetUserInput(frameNo int) string {
 	var frameVal string
 	fmt.Print("Enter Frame " + strconv.Itoa(frameNo) + ": ")
 	fmt.Scanln(&frameVal)
-	frameScore := SumRolls(frameVal)
-	return frameScore
+	return frameVal
 }
 
 func SumRolls(input string) int {
@@ -23,7 +27,9 @@ func SumRolls(input string) int {
 				result += 10
 			}
 		case "X":
-			result += 10
+			if result+10 <= 30 {
+				result += 10
+			}
 		case "1", "2", "3", "4", "5", "6", "7", "8", "9", "0":
 			slice, err := strconv.Atoi(frame)
 			if err == nil {
@@ -64,7 +70,8 @@ func main() {
 	currentScore := 0
 	printWelcome()
 	for f := 1; f <= 10; f++ {
-		currentFrameScore := getFrameScore(f)
+		input := GetUserInput(f)
+		currentFrameScore := CalculateFrameScore(input)
 		currentScore += currentFrameScore
 		fmt.Println("           [" + strconv.Itoa(f) + "] Total Score: " + strconv.Itoa(currentScore))
 	}

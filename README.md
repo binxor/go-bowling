@@ -14,9 +14,10 @@ Run commands in CLI.
 > ./main
 ```
 
-## To run Tests
+## To Run Tests
 ```
-> go test gobowling
+> cd src
+> go test -v *.go
 ```
 
 ## Requirements
