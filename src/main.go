@@ -1,4 +1,4 @@
-package gobowling
+package main
 
 import (
 	"fmt"
@@ -6,23 +6,48 @@ import (
 )
 
 func getFrameScore(frameNo int) int {
-	// TODO - validate frameVal, repeat user query if bad
 	var frameVal string
-	fmt.Print("Enter Your Frame [" + strconv.Itoa(frameNo) + "]: ")
+	fmt.Print("Enter Frame " + strconv.Itoa(frameNo) + ": ")
 	fmt.Scanln(&frameVal)
-	frameScore := Score(frameVal)
+	frameScore := SumRolls(frameVal)
 	return frameScore
 }
 
-func Score(input ...string) int {
-	// TODO - scoring logic
-	fmt.Print(input, " ")
-	for _, frame := range input {
-		// TODO - parse frame input and score
-		fmt.Println(frame)
+func SumRolls(input string) int {
+	result := 0
+	for i := 0; i < len(input); i++ {
+		frame := string(input[i])
+		switch frame {
+		case "/":
+			if result+10 <= 20 {
+				result += 10
+			}
+		case "X":
+			result += 10
+		case "1", "2", "3", "4", "5", "6", "7", "8", "9", "0":
+			slice, err := strconv.Atoi(frame)
+			if err == nil {
+				result += slice
+			}
+		case ",":
+		default:
+			fmt.Println("               Skipping unrecognized character: " + frame)
+		}
 	}
-	result := 5
 	return result
+}
+
+func printFinalScore(val int) {
+	fmt.Println("")
+	fmt.Println("----------------------")
+	fmt.Println("[ Final Score ]: [ " + strconv.Itoa(val) + " ]")
+	fmt.Println("----------------------")
+}
+
+func printGoodbye() {
+	fmt.Println("")
+	fmt.Println("Thanks for playing! ")
+	fmt.Println("")
 }
 
 func printWelcome() {
@@ -41,6 +66,8 @@ func main() {
 	for f := 1; f <= 10; f++ {
 		currentFrameScore := getFrameScore(f)
 		currentScore += currentFrameScore
-		fmt.Println("Frame " + strconv.Itoa(f) + ": " + strconv.Itoa(currentScore))
+		fmt.Println("           [" + strconv.Itoa(f) + "] Total Score: " + strconv.Itoa(currentScore))
 	}
+	printFinalScore(currentScore)
+	printGoodbye()
 }
